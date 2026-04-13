@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mexican Horned Lizard</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Noto+Sans+KR:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#180e06;--surface:#241608;--surface2:#2e1e0c;--accent:#d09040;--accent2:#e8c078;--gold:#f0d040;--text:#e0c898;--muted:#806030;--border:#38200c;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-serif;min-height:100vh;padding-bottom:60px;}
+body.en{font-family:'Inter',sans-serif;}
+.lang-bar{position:sticky;top:0;z-index:100;background:rgba(0,0,0,0.75);backdrop-filter:blur(8px);padding:10px 20px;display:flex;justify-content:flex-end;}
+.lang-btn{display:flex;background:var(--surface);border:1px solid var(--border);border-radius:20px;overflow:hidden;}
+.lang-btn button{padding:6px 16px;font-size:12px;font-weight:500;border:none;background:transparent;color:var(--muted);cursor:pointer;letter-spacing:0.5px;transition:all 0.2s;}
+.lang-btn button.active{background:var(--accent);color:#0a0a0a;font-weight:500;}
+.hero{position:relative;height:260px;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 25% 65%,rgba(208,144,64,0.2) 0%,transparent 52%),linear-gradient(170deg,#281808 0%,#180e06 100%);}
+.hero-bg::after{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(-32deg,transparent 0px,transparent 15px,rgba(208,144,64,0.03) 15px,rgba(208,144,64,0.03) 16px);}
+.hero-content{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:0 24px 28px;}
+.hero-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(208,144,64,0.1);border:1px solid rgba(208,144,64,0.25);color:var(--accent);font-size:10px;letter-spacing:2.5px;text-transform:uppercase;padding:5px 12px;border-radius:20px;margin-bottom:12px;width:fit-content;}
+.hero-name{font-family:'Playfair Display',serif;font-size:30px;line-height:1.05;color:#fff;}
+.hero-name span{color:var(--accent);}
+.hero-sci{font-family:'Playfair Display',serif;font-style:italic;font-size:14px;color:var(--muted);margin-top:5px;}
+.hero-illo{position:absolute;right:16px;bottom:16px;font-size:100px;opacity:0.75;filter:drop-shadow(0 0 28px rgba(208,144,64,0.5));animation:breathe 5s ease-in-out infinite;z-index:1;}
+@keyframes breathe{0%,100%{transform:rotate(-5deg) translateY(0)}50%{transform:rotate(3deg) translateY(-10px)}}
+.body{padding:24px 20px 0;max-width:480px;margin:0 auto;}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:24px;}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 6px;text-align:center;}
+.stat-val{font-family:'Playfair Display',serif;font-size:17px;color:var(--accent2);display:block;line-height:1;}
+.stat-key{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-top:4px;display:block;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:18px 20px;margin-bottom:12px;}
+.card-title{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:12px;display:flex;align-items:center;gap:7px;}
+.card-title::after{content:'';flex:1;height:1px;background:var(--border);}
+.card p{font-size:13.5px;line-height:1.8;color:#c0a070;font-weight:300;}
+.origin{display:flex;align-items:center;gap:12px;background:var(--surface2);border-radius:12px;padding:14px 16px;margin-bottom:12px;border:1px solid var(--border);}
+.origin-flag{font-size:28px;}
+.origin-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:2px;}
+.origin-val{font-size:13.5px;color:var(--text);}
+.habitat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.habitat-item{background:var(--surface2);border-radius:10px;padding:12px 14px;display:flex;align-items:flex-start;gap:10px;}
+.habitat-icon{font-size:20px;flex-shrink:0;margin-top:1px;}
+.habitat-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;display:block;margin-bottom:2px;}
+.habitat-val{font-size:13px;color:var(--text);font-weight:400;}
+.diet-item{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.diet-item:last-child{margin-bottom:0;}
+.diet-icon{font-size:18px;flex-shrink:0;}
+.diet-label{font-size:13px;color:#c0a070;flex:1;}
+.bar-track{width:70px;height:5px;background:var(--border);border-radius:3px;flex-shrink:0;}
+.bar-fill{height:5px;border-radius:3px;background:linear-gradient(90deg,var(--accent),var(--gold));}
+.tags{display:flex;flex-wrap:wrap;gap:7px;}
+.tag{background:rgba(208,144,64,0.1);border:1px solid rgba(208,144,64,0.25);color:var(--accent2);font-size:11.5px;padding:5px 12px;border-radius:20px;}
+.funfact{border-left:3px solid var(--accent);background:linear-gradient(to right,rgba(208,144,64,0.08),transparent);border-radius:0 12px 12px 0;padding:14px 16px;margin-top:12px;}
+.funfact-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:5px;}
+.funfact p{font-size:13px;color:#c0a070;line-height:1.75;font-weight:300;}
+.funfact p strong{color:var(--accent2);font-weight:400;}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;padding:5px 12px;border-radius:8px;margin-top:10px;}
+.kr{display:block;}.en-t{display:none;}
+body.en .kr{display:none;}body.en .en-t{display:block;}
+span.kr{display:inline;}span.en-t{display:none;}
+body.en span.kr{display:none;}body.en span.en-t{display:inline;}
+</style>
+</head>
+<body id="body">
+<div class="lang-bar">
+  <div class="lang-btn">
+    <button id="btn-kr" class="active" onclick="setLang('kr')">🇰🇷 한국어</button>
+    <button id="btn-en" onclick="setLang('en')">🇬🇧 English</button>
+  </div>
+</div>
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-illo">🦎</div>
+  <div class="hero-content">
+    <div class="hero-tag"><span class="kr">● Live Animal · 생물</span><span class="en-t">● Live Animal</span></div>
+    <div class="hero-name">멕시칸 혼 <span>리자드</span></div>
+    <div class="hero-sci">Phrynosoma orbiculare</div>
+  </div>
+</div>
+<div class="body">
+  <div class="stats"><div class="stat"><span class="stat-val">15cm</span><span class="stat-key kr">최대 전장</span><span class="stat-key en-t">Max Length</span></div><div class="stat"><span class="stat-val">8년</span><span class="stat-key kr">수명</span><span class="stat-key en-t">Lifespan</span></div><div class="stat"><span class="stat-val">30%</span><span class="stat-key kr">습도</span><span class="stat-key en-t">Humidity</span></div><div class="stat"><span class="stat-val">40°C</span><span class="stat-key kr">바스킹</span><span class="stat-key en-t">Basking</span></div></div>
+  <div class="origin">
+    <div class="origin-flag">🌵</div>
+    <div>
+      <div class="origin-label kr">원산지 · Origin</div>
+      <div class="origin-label en-t">Origin</div>
+      <div class="origin-val kr">멕시코 고원 — 건조·반건조 암석 지역</div>
+      <div class="origin-val en-t">Mexican highlands — arid & semi-arid rocky terrain</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title kr">소개</div>
+    <div class="card-title en-t">About</div>
+    <p class="kr">멕시코 고원의 건조 지역에 서식하는 납작한 몸의 도마뱀입니다. 머리에 <strong>왕관 모양 진짜 뿔(뼈 돌기)</strong>이 있으며 몸 전체가 가시 비늘로 덮여 있습니다. 보호색으로 바위나 흙에 완벽히 위장합니다.</p>
+    <p class="en-t">A remarkable flat-bodied lizard from Mexico's highlands, featuring a <strong>crown of true horns</strong> (bony projections) on its head and spiny scales covering its body. A master of camouflage, it blends seamlessly with rocky and sandy terrain.</p>
+    <div class="badge" style="background:rgba(240,80,80,0.1);border:1px solid rgba(240,80,80,0.3);color:#f08080"><span class="kr">⚠ 고난이도 — 개미 특화 식이 필요</span><span class="en-t">⚠ Advanced care — specialized ant diet required</span></div>
+  </div>
+  <div class="card">
+    <div class="card-title kr">사육 환경</div>
+    <div class="card-title en-t">Housing</div>
+    <div class="habitat-grid"><div class="habitat-item"><span class="habitat-icon">🌡</span><div><span class="habitat-label kr">주간 온도</span><span class="habitat-label en-t">Day Temp</span><span class="habitat-val kr">27~32°C</span><span class="habitat-val en-t">27–32°C</span></div></div><div class="habitat-item"><span class="habitat-icon">☀️</span><div><span class="habitat-label kr">바스킹</span><span class="habitat-label en-t">Basking</span><span class="habitat-val kr">38~42°C</span><span class="habitat-val en-t">38–42°C</span></div></div><div class="habitat-item"><span class="habitat-icon">💡</span><div><span class="habitat-label kr">UVB</span><span class="habitat-label en-t">UVB</span><span class="habitat-val kr">강한 UVB 필수</span><span class="habitat-val en-t">Strong UVB essential</span></div></div><div class="habitat-item"><span class="habitat-icon">🏜</span><div><span class="habitat-label kr">바닥재</span><span class="habitat-label en-t">Substrate</span><span class="habitat-val kr">모래·자갈 혼합</span><span class="habitat-val en-t">Sand & gravel mix</span></div></div></div>
+  </div>
+  <div class="card">
+    <div class="card-title kr">먹이</div>
+    <div class="card-title en-t">Diet</div>
+    <div class="diet-item"><span class="diet-icon">🐜</span><span class="diet-label kr">수확 개미 (주식 · 필수)</span><span class="diet-label en-t">Harvester ants (staple — essential)</span><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div></div><div class="diet-item"><span class="diet-icon">🦗</span><span class="diet-label kr">소형 귀뚜라미 · 흰개미</span><span class="diet-label en-t">Small crickets · Termites</span><div class="bar-track"><div class="bar-fill" style="width:40%"></div></div></div><div class="diet-item"><span class="diet-icon">🦴</span><span class="diet-label kr">칼슘 더스팅 · 포름산 보충</span><span class="diet-label en-t">Calcium dusting · Formic acid supplement</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div></div>
+  </div>
+  <div class="card">
+    <div class="card-title kr">특징</div>
+    <div class="card-title en-t">Key Facts</div>
+    <div class="tags"><span class="tag kr">👑 진짜 뿔</span><span class="tag en-t">👑 True horn crown</span><span class="tag kr">🎭 보호색</span><span class="tag en-t">🎭 Camouflage</span><span class="tag kr">🩸 눈에서 피 분사</span><span class="tag en-t">🩸 Blood-squirting eyes</span><span class="tag kr">🏜 건조 선호</span><span class="tag en-t">🏜 Arid environment</span><span class="tag kr">😮 납작한 몸</span><span class="tag en-t">😮 Flat body</span><span class="tag kr">🐜 개미 전문가</span><span class="tag en-t">🐜 Ant specialist</span></div>
+  </div>
+  <div class="funfact">
+    <div class="funfact-label kr">✦ 알고 계셨나요?</div>
+    <div class="funfact-label en-t">✦ Did You Know?</div>
+    <p class="kr">혼 리자드는 위협받으면 <strong>눈의 혈관을 수축시켜 눈꺼풀 틈새로 피를 분사</strong>할 수 있습니다! 최대 1.5m까지 뿜어낼 수 있으며, 개를 포함한 포식자가 싫어하는 성분이 포함되어 있습니다.</p>
+    <p class="en-t">When threatened, the Horned Lizard can <strong>squirt blood from its eyes</strong> up to 1.5 meters! This blood contains chemicals that are repellent to canine and feline predators — a truly unique defense!</p>
+  </div>
+</div>
+<script>
+function setLang(l){document.getElementById('body').className=l==='en'?'en':'';document.getElementById('btn-kr').className=l==='kr'?'active':'';document.getElementById('btn-en').className=l==='en'?'active':'';localStorage.setItem('lang',l);}
+const s=localStorage.getItem('lang');if(s)setLang(s);
+</script>
+</body>
+</html>
